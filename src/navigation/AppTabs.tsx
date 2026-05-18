@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AtendimentosScreen } from '../screens/AtendimentosScreen';
 import { DashboardScreen } from '../screens/DashboardScreen';
-import { RelatoriosScreen } from '../screens/RelatoriosScreen';
+import { EstatisticasScreen } from '../screens/EstatisticasScreen';
 
 export type RootTabParamList = {
   Dashboard: undefined;
@@ -38,12 +38,8 @@ export function AppTabs() {
       })}
     >
       <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ title: 'Painel' }} />
-      <Tab.Screen
-        name="Atendimentos"
-        component={AtendimentosScreen}
-        options={{ title: 'Atendimentos' }}
-      />
-      <Tab.Screen name="Relatorios" component={RelatoriosScreen} options={{ title: 'Relatórios' }} />
+      <Tab.Screen name="Atendimentos" component={AtendimentosScreen} options={{ title: 'Atendimentos' }} />
+      <Tab.Screen name="Relatorios" component={EstatisticasScreen} options={{ title: 'Estatisticas' }} />
     </Tab.Navigator>
   );
 }

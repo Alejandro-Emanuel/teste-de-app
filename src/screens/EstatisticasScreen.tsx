@@ -1,12 +1,12 @@
 import { Text, View } from 'react-native';
 import { styles } from '../styles';
 
-export function RelatoriosScreen() {
+export function EstatisticasScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Relatórios</Text>
+      <Text style={styles.titulo}>Estatisticas</Text>
       <Text style={styles.subtitulo}>
-        Nesta área você pode consolidar números e evolução semanal.
+        Neste setor nos iremos adicionar as Estatisticas de uso do sistema de verificação
       </Text>
     </View>
   );
