@@ -1,6 +1,6 @@
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { DrawerActions } from '@react-navigation/native';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View, Image } from 'react-native';
 import type { RootTabParamList } from '../navigation/AppTabs';
 import { styles } from '../styles';
 

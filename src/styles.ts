@@ -41,4 +41,17 @@ export const styles = StyleSheet.create({
     color: '#00ABE4',
     fontWeight: '700',
   },
+  containerCaixaDagua:{
+    flex: 1,
+    backgroundColor: '#f8fafc',
+    padding: 16,
+    justifyContent: 'center',
+    gap: 10,
+  },
+  caixaDagua: {
+    width: '90%',
+    aspectRatio: 1,
+    resizeMode: 'contain'
+  },
+
 });

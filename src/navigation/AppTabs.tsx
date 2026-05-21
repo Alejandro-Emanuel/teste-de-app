@@ -1,6 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AtendimentosScreen } from '../screens/AtendimentosScreen';
 import { DashboardScreen } from '../screens/DashboardScreen';
 import { EstatisticasScreen } from '../screens/EstatisticasScreen';
 
