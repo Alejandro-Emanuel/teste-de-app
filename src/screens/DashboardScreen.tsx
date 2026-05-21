@@ -9,17 +9,10 @@ type Props = BottomTabScreenProps<RootTabParamList, 'Dashboard'>;
 export function DashboardScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Painel operacional</Text>
+      <Text style={styles.titulo}>Pagina principal</Text>
       <Text style={styles.subtitulo}>
-        Use as abas para alternar as áreas principais e abra o menu lateral para configurações.
+        É aqui q nos vamos colocar o icone principal.
       </Text>
-
-      <Pressable
-        style={styles.botaoPrimario}
-        onPress={() => navigation.navigate('Atendimentos')}
-      >
-        <Text style={styles.botaoPrimarioTexto}>Ir para Atendimentos</Text>
-      </Pressable>
 
       <Pressable
         style={styles.botaoSecundario}
