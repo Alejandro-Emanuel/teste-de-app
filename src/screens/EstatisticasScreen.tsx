@@ -8,7 +8,7 @@ export function EstatisticasScreen() {
       <Text style={styles.subtitulo}>
         Neste setor nos iremos adicionar as Estatisticas de uso do sistema de verificação
       </Text>
-
+      
     </View>
   );
 }

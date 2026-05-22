@@ -12,6 +12,8 @@ export const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '700',
     color: '#0f172a',
+    alignSelf: 'center',
+    paddingTop: 50,
   },
   subtitulo: {
     fontSize: 14,
@@ -41,17 +43,23 @@ export const styles = StyleSheet.create({
     color: '#00ABE4',
     fontWeight: '700',
   },
-  containerCaixaDagua:{
-    flex: 1,
-    backgroundColor: '#f8fafc',
+  containerCaixa:{
     padding: 16,
-    justifyContent: 'center',
-    gap: 10,
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    gap: 20,
+    justifyContent: 'space-between',
   },
-  caixaDagua: {
-    width: '90%',
-    aspectRatio: 1,
-    resizeMode: 'contain'
+  caixaDaguaImg: {
+    width: '50%',
+    height: 200,
+    flex: 5,
+    
   },
+  litros:{
+    width: '50%',
+    flex: 5,
+  }
 
 });
