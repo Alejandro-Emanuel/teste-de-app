@@ -5,8 +5,7 @@ import { EstatisticasScreen } from '../screens/EstatisticasScreen';
 
 export type RootTabParamList = {
   Dashboard: undefined;
-  Atendimentos: undefined;
-  Relatorios: undefined;
+  Estatistica: undefined;
 };
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -36,7 +35,7 @@ export function AppTabs() {
       })}
     >
       <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ title: 'Painel' }} />
-      <Tab.Screen name="Relatorios" component={EstatisticasScreen} options={{ title: 'Estatisticas' }} />
+      <Tab.Screen name="Estatistica" component={EstatisticasScreen} options={{ title: 'Estatisticas' }} />
     </Tab.Navigator>
   );
 }

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { red } from 'react-native-reanimated/lib/typescript/Colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -53,13 +54,24 @@ export const styles = StyleSheet.create({
   },
   caixaDaguaImg: {
     width: '50%',
-    height: 200,
+    height: 150,
     flex: 5,
-    
+  },
+  containerInformacoes:{
+    flex: 1,
+    flexDirection: 'column',
   },
   litros:{
     width: '50%',
-    flex: 5,
-  }
+    flex: 1,
+    backgroundColor: 'red',
+    height: 100,
+  },
+  volume:{
+    width: '50%',
+    flex: 1,
+    backgroundColor: 'green',
+    height: 100,
+  },
 
 });

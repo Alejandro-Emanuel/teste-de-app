@@ -17,7 +17,10 @@ export function DashboardScreen({ navigation }: Props) {
           style={styles.caixaDaguaImg}
           resizeMode="cover"
           />
-        <Text style={styles.litros}>(X) Litros</Text>
+        <View style={styles.containerInformacoes}>
+          <Text style={styles.litros}>(X) Litros</Text>
+          <Text style={styles.volume}>(X) Volume</Text>
+        </View>
       </View>
       <Text style={styles.subtitulo}>
         É aqui q nos vamos colocar o icone principal.
