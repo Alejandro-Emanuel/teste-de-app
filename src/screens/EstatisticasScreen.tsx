@@ -1,6 +1,5 @@
 import { Text, View } from 'react-native';
-import { styles } from '../componentes/styles';
-import { CardStatisticas } from '../componentes/CardStatisticas';
+import { styles } from '../styles';
 
 export function EstatisticasScreen() {
   return (

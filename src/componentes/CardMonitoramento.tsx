@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import { styles } from './styles';
+import { styles } from '../styles';
 
 interface CardMonitoramentoProps {
   litros: string;
