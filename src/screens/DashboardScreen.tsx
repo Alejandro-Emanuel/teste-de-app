@@ -3,7 +3,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { Pressable, Text, View } from 'react-native';
 import { CardMonitoramento } from '../componentes/CardMonitoramento';
 import type { RootTabParamList } from '../navigation/AppTabs';
-import { styles } from '../componentes/styles';
+import { styles } from '../styles';
 
 type Props = BottomTabScreenProps<RootTabParamList, 'Dashboard'>;
 
