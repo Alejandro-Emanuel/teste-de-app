@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#0B1D3A',
     padding: 16,
     justifyContent: 'center',
     gap: 10,
@@ -11,14 +11,14 @@ export const styles = StyleSheet.create({
   titulo: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#0f172a',
+    color: '#ffff',
     alignSelf: 'center',
     paddingTop: 50,
   },
   subtitulo: {
     fontSize: 14,
     lineHeight: 20,
-    color: '#475569',
+    color: '#a7a6a6',
     marginBottom: 8,
     textAlign: 'center',
   },
@@ -40,18 +40,12 @@ export const styles = StyleSheet.create({
      ========================================================== */
   cardContainer: {
     flexDirection: 'row',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#123368',
     borderRadius: 16,
     padding: 16,
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 16,
-    // Sombra para iOS
-    shadowColor: '#0f172a',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 12,
-    // Sombra para Android
     elevation: 3,
     marginVertical: 12,
   },
@@ -86,6 +80,11 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: '#22c55e',
   },
+  blocoF_Lotar:{
+    backgroundColor: '#f0fdf4', // laranja pastel premium
+    borderLeftWidth: 4,
+    borderLeftColor: '#d3840d',
+  },
   rotuloInfo: {
     fontSize: 11,
     textTransform: 'uppercase',
@@ -98,5 +97,16 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     color: '#0f172a',
+  },
+  containerIstatisticas: {
+    flexDirection: 'row',
+    backgroundColor: '#123368',
+    borderRadius: 16,
+    padding: 16,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 16,
+    elevation: 3,
+    marginVertical: 12,
   },
 });

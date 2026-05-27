@@ -6,7 +6,7 @@ export function ConfiguracoesScreen() {
     <View style={styles.container}>
       <Text style={styles.titulo}>Configurações</Text>
       <Text style={styles.subtitulo}>
-        Tela acessada pelo drawer para opções menos frequentes do app.
+        Tela acessada pelo drawer possivelmente sera apagada.
       </Text>
     </View>
   );
