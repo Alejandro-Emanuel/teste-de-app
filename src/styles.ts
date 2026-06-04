@@ -106,4 +106,7 @@ export const styles = StyleSheet.create({
     elevation: 3,
     marginVertical: 12,
   },
+  containerGraficos:{
+
+  },
 });

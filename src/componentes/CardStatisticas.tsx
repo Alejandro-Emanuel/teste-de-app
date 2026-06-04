@@ -14,17 +14,17 @@ export function CardStatisticas({ litros, volume, F_Lotar }: CardMonitoramentoPr
         
   
         <View style={styles.containerIstatisticas}>
-          <View style={[styles.blocoInfo, styles.blocoLitros]}>
+          <View style={[styles.blocoInfo]}>
             <Text style={styles.rotuloInfo}>Litros Atual</Text>
             <Text style={styles.valorInfo}>{litros}</Text>
           </View>
   
-          <View style={[styles.blocoInfo, styles.blocoVolume]}>
+          <View style={[styles.blocoInfo]}>
             <Text style={styles.rotuloInfo}>Volume Total</Text>
             <Text style={styles.valorInfo}>{volume}</Text>
           </View>
 
-          <View style={[styles.blocoInfo, styles.blocoF_Lotar]}>
+          <View style={[styles.blocoInfo]}>
             <Text style={styles.rotuloInfo}>Esta Faltando</Text>
             <Text style={styles.valorInfo}>{F_Lotar}</Text>
           </View>
