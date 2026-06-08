@@ -63,10 +63,23 @@ export const styles = StyleSheet.create({
     gap: 12,
   },
   blocoInfo: {
-    padding: 12,
-    borderRadius: 12,
-    justifyContent: 'center',
-  },
+  flex: 1,
+
+  backgroundColor: 'rgba(255,255,255,0.08)',
+
+  borderRadius: 18,
+
+  paddingVertical: 16,
+  paddingHorizontal: 10,
+
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  borderWidth: 1,
+  borderColor: 'rgba(255,255,255,0.12)',
+
+  marginHorizontal: 4,
+},
   blocoLitros: {
     backgroundColor: '#fef2f2', 
     borderLeftWidth: 4,
@@ -83,29 +96,65 @@ export const styles = StyleSheet.create({
     borderLeftColor: '#d3840d',
   },
   rotuloInfo: {
-    fontSize: 11,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-    fontWeight: '600',
-    color: '#64748b',
-    marginBottom: 2,
+  fontSize: 11,
+
+  textTransform: 'uppercase',
+
+  letterSpacing: 1.2,
+
+  color: 'rgba(190,220,255,0.85)',
+
+  fontWeight: '700',
+
+  marginBottom: 8,
+
+  textAlign: 'center',
+},
+ valorInfo: {
+  fontSize: 24,
+
+  fontWeight: '900',
+
+  color: '#FFFFFF',
+
+  textAlign: 'center',
+
+  textShadowColor: 'rgba(100,180,255,0.35)',
+  textShadowOffset: {
+    width: 0,
+    height: 0,
   },
-  valorInfo: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#0f172a',
+  textShadowRadius: 8,
+},
+ containerIstatisticas: {
+  flexDirection: 'row',
+
+  backgroundColor: 'rgba(12, 31, 58, 0.75)',
+
+  borderRadius: 24,
+  padding: 18,
+
+  justifyContent: 'space-between',
+  alignItems: 'center',
+
+  borderWidth: 1.5,
+  borderColor: 'rgba(120, 180, 255, 0.25)',
+
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 8,
   },
-  containerIstatisticas: {
-    flexDirection: 'row',
-    backgroundColor: '#123368',
-    borderRadius: 16,
-    padding: 16,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 16,
-    elevation: 3,
-    marginVertical: 12,
-  },
+  shadowOpacity: 0.3,
+  shadowRadius: 15,
+
+  elevation: 12,
+
+  overflow: 'hidden',
+
+  borderTopWidth: 2,
+borderTopColor: '#69B7FF',
+},
   containerGraficos:{
 
   },
