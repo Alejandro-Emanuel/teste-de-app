@@ -25,7 +25,7 @@ export function CardStatisticas({ litros, volume, F_Lotar }: CardMonitoramentoPr
           </View>
 
           <View style={[styles.blocoInfo]}>
-            <Text style={styles.rotuloInfo}>Esta Faltando</Text>
+            <Text style={styles.rotuloInfo}>Faltando</Text>
             <Text style={styles.valorInfo}>{F_Lotar}</Text>
           </View>
 
