@@ -65,12 +65,14 @@ export const styles = StyleSheet.create({
   blocoInfo: {
   flex: 1,
 
+  minHeight: 100,
+
   backgroundColor: 'rgba(255,255,255,0.08)',
 
   borderRadius: 18,
 
   paddingVertical: 16,
-  paddingHorizontal: 10,
+  paddingHorizontal: '3%',
 
   alignItems: 'center',
   justifyContent: 'center',
@@ -78,7 +80,7 @@ export const styles = StyleSheet.create({
   borderWidth: 1,
   borderColor: 'rgba(255,255,255,0.12)',
 
-  marginHorizontal: 4,
+  marginHorizontal: '1%',
 },
   blocoLitros: {
     backgroundColor: '#fef2f2', 
@@ -96,7 +98,7 @@ export const styles = StyleSheet.create({
     borderLeftColor: '#d3840d',
   },
   rotuloInfo: {
-  fontSize: 11,
+  fontSize: 12,
 
   textTransform: 'uppercase',
 
@@ -109,7 +111,10 @@ export const styles = StyleSheet.create({
   marginBottom: 8,
 
   textAlign: 'center',
+
+  flexWrap: 'wrap',
 },
+
  valorInfo: {
   fontSize: 24,
 
@@ -119,20 +124,29 @@ export const styles = StyleSheet.create({
 
   textAlign: 'center',
 
+  flexWrap: 'wrap',
+
   textShadowColor: 'rgba(100,180,255,0.35)',
+
   textShadowOffset: {
     width: 0,
     height: 0,
   },
+
   textShadowRadius: 8,
 },
  containerIstatisticas: {
   flexDirection: 'row',
 
+  width: '100%',
+  maxWidth: 1200,
+
   backgroundColor: 'rgba(12, 31, 58, 0.75)',
 
   borderRadius: 24,
-  padding: 18,
+
+  paddingVertical: 18,
+  paddingHorizontal: '4%',
 
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -152,8 +166,7 @@ export const styles = StyleSheet.create({
 
   overflow: 'hidden',
 
-  borderTopWidth: 2,
-borderTopColor: '#69B7FF',
+  alignSelf: 'center',
 },
   containerGraficos:{
 
