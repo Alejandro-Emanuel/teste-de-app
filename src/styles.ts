@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
     color: '#00ABE4',
     fontWeight: '700',
   },
-
   cardContainer: {
     flexDirection: 'row',
     backgroundColor: '#123368',
@@ -63,25 +62,18 @@ export const styles = StyleSheet.create({
     gap: 12,
   },
   blocoInfo: {
-  flex: 1,
-
-  minHeight: 100,
-
-  backgroundColor: 'rgba(255,255,255,0.08)',
-
-  borderRadius: 18,
-
-  paddingVertical: 16,
-  paddingHorizontal: '3%',
-
-  alignItems: 'center',
-  justifyContent: 'center',
-
-  borderWidth: 1,
-  borderColor: 'rgba(255,255,255,0.12)',
-
-  marginHorizontal: '1%',
-},
+    flex: 1,
+    minHeight: 100,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderRadius: 18,
+    paddingVertical: 16,
+    paddingHorizontal: '3%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    marginHorizontal: '1%',
+  },
   blocoLitros: {
     backgroundColor: '#fef2f2', 
     borderLeftWidth: 4,
@@ -92,83 +84,49 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: '#22c55e',
   },
-  blocoF_Lotar:{
-    backgroundColor: '#f0fdf4',
-    borderLeftWidth: 4,
-    borderLeftColor: '#d3840d',
-  },
   rotuloInfo: {
-  fontSize: 12,
-
-  textTransform: 'uppercase',
-
-  letterSpacing: 1.2,
-
-  color: 'rgba(190,220,255,0.85)',
-
-  fontWeight: '700',
-
-  marginBottom: 8,
-
-  textAlign: 'center',
-
-  flexWrap: 'wrap',
-},
-
- valorInfo: {
-  fontSize: 24,
-
-  fontWeight: '900',
-
-  color: '#FFFFFF',
-
-  textAlign: 'center',
-
-  flexWrap: 'wrap',
-
-  textShadowColor: 'rgba(100,180,255,0.35)',
-
-  textShadowOffset: {
-    width: 0,
-    height: 0,
+    fontSize: 10,
+    textTransform: 'uppercase',
+    letterSpacing: 1.2,
+    fontWeight: '700',
+    marginBottom: 8,
+    textAlign: 'center',
   },
-
-  textShadowRadius: 8,
-},
- containerIstatisticas: {
-  flexDirection: 'row',
-
-  width: '100%',
-  maxWidth: 1200,
-
-  backgroundColor: 'rgba(12, 31, 58, 0.75)',
-
-  borderRadius: 24,
-
-  paddingVertical: 18,
-  paddingHorizontal: '4%',
-
-  justifyContent: 'space-between',
-  alignItems: 'center',
-
-  borderWidth: 1.5,
-  borderColor: 'rgba(120, 180, 255, 0.25)',
-
-  shadowColor: '#000',
-  shadowOffset: {
-    width: 0,
-    height: 8,
+  valorInfo: {
+    fontSize: 20,
+    fontWeight: '700',
+    textAlign: 'center',
+    flexWrap: 'wrap',
+    textShadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    textShadowRadius: 8,
   },
-  shadowOpacity: 0.3,
-  shadowRadius: 15,
-
-  elevation: 12,
-
-  overflow: 'hidden',
-
-  alignSelf: 'center',
-},
-  containerGraficos:{
-
+  containerIstatisticas: {
+    flexDirection: 'row',
+    width: '100%',
+    maxWidth: 1200,
+    backgroundColor: 'rgba(12, 31, 58, 0.75)',
+    borderRadius: 24,
+    paddingVertical: 18,
+    paddingHorizontal: '4%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderWidth: 1.5,
+    borderColor: 'rgba(120, 180, 255, 0.25)',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 15,
+    elevation: 12,
+    overflow: 'hidden',
+    alignSelf: 'center',
   },
+    containerGraficos:{
+
+    },
 });
