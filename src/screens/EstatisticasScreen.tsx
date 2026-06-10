@@ -10,12 +10,8 @@ export function EstatisticasScreen() {
       </View>
 
       <View style={styles.containerIstatisticas}>
-        <CardStatisticas litros="450 Litros" volume="75% Volume" F_Lotar='35% Para completar'/>
+        <CardStatisticas litros="450 Litros" volume="75% Volume" F_Lotar='35% Volume'/>
         </View>
-      <Text style={styles.titulo}>Estatisticas</Text>
-      <Text style={styles.subtitulo}>
-        Neste setor nos iremos adicionar as Estatisticas de uso do sistema de verificação
-      </Text>
     </View>
   );
 }

@@ -34,7 +34,7 @@ export function AppTabs() {
         ),
       })}
     >
-      <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ title: 'Painel' }} />
+      <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ title: 'Principal' }} />
       <Tab.Screen name="Estatistica" component={EstatisticasScreen} options={{ title: 'Estatisticas' }} />
     </Tab.Navigator>
   );
