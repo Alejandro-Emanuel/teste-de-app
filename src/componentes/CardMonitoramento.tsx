@@ -2,7 +2,6 @@ import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { styles } from '../styles';
 
-// Mapeamento de ícones por faixa de volume
 const iconesPorVolume = [
   require('../../assets/Icone0.jpg'),   // 0–16%
   require('../../assets/icone1.jpeg'),  // 17–33%
@@ -22,7 +21,7 @@ function obterIcone(volumePercent: number) {
 
 interface CardMonitoramentoProps {
   litros: string;
-  volume: number; // agora recebe número (0–100)
+  volume: number;
 }
 
 export function CardMonitoramento({ litros, volume }: CardMonitoramentoProps) {
@@ -30,7 +29,7 @@ export function CardMonitoramento({ litros, volume }: CardMonitoramentoProps) {
     <View style={styles.cardContainer}>
       <View style={styles.containerImagem}>
         <Image
-          source={obterIcone(volume)}  // ← imagem dinâmica
+          source={obterIcone(volume)}  
           style={styles.caixaDaguaImg}
           resizeMode="cover"
         />

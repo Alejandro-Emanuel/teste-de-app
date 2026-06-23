@@ -13,7 +13,7 @@ export function DashboardScreen({ navigation }: Props) {
       <Text style={styles.titulo}>Painel Principal</Text>
       <Text style={styles.subtitulo}>Status em tempo real do seu sistema</Text>
 
-      <CardMonitoramento litros="450 L" volume={60} />
+      <CardMonitoramento litros="450 L" volume={100} />
 
       <Pressable
         style={styles.botaoSecundario}
