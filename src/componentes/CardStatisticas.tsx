@@ -1,35 +1,49 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import { styles } from '../styles';
+import { useCaixa } from '../context/CaixaContext';
 
-interface CardMonitoramentoProps {
-  litros: string;
-  volume: string;
-  F_Lotar: string;
+function clamp(valor: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, valor));
 }
 
-export function CardStatisticas({ litros, volume, F_Lotar }: CardMonitoramentoProps) {
+export function CardStatisticas() {
+  const { dados } = useCaixa();
+  const volumeSeguro = clamp(dados.volume, 0, 100);
+
   return (
-      <View style={styles.cardContainer}>
-        
-  
-        <View style={styles.containerIstatisticas}>
-          <View style={[styles.blocoInfo]}>
-            <Text style={styles.rotuloInfo}>Litros Atual</Text>
-            <Text style={styles.valorInfo}>{litros}</Text>
-          </View>
-  
-          <View style={[styles.blocoInfo]}>
-            <Text style={styles.rotuloInfo}>Volume Total</Text>
-            <Text style={styles.valorInfo}>{volume}</Text>
-          </View>
+    <View style={styles.statCard}>
 
-          <View style={[styles.blocoInfo]}>
-            <Text style={styles.rotuloInfo}>Faltando</Text>
-            <Text style={styles.valorInfo}>{F_Lotar}</Text>
-          </View>
-
+      <View style={styles.statCardHeader}>
+        <Text style={styles.statCardTitulo}>Caixa d'água</Text>
+        <View style={styles.statBadge}>
+          <Text style={styles.statBadgeTexto}>Ativo</Text>
         </View>
       </View>
-    );
-  }
+
+      <View style={styles.statRow}>
+        <View style={styles.statBloco}>
+          <Text style={styles.statLabel}>Litros atual</Text>
+          <Text style={[styles.statValor, { color: '#00ABE4' }]}>
+            {dados.litros}<Text style={styles.statUnidade}> L</Text>
+          </Text>
+        </View>
+
+        <View style={styles.statBloco}>
+          <Text style={styles.statLabel}>Volume</Text>
+          <Text style={styles.statValor}>
+            {volumeSeguro}<Text style={styles.statUnidade}>%</Text>
+          </Text>
+        </View>
+
+        <View style={styles.statBloco}>
+          <Text style={styles.statLabel}>Para completar</Text>
+          <Text style={[styles.statValor, { color: '#F5C475' }]}>
+            {dados.fLotar}<Text style={styles.statUnidade}>%</Text>
+          </Text>
+        </View>
+      </View>
+
+    </View>
+  );
+}

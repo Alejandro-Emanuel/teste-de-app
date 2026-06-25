@@ -1,6 +1,13 @@
-import { CaixaDagua } from './src/componentes/caixaDagua';
+import { NavigationContainer } from '@react-navigation/native';
+import { CaixaProvider } from './src/context/CaixaContext';
 import { RootNavigator } from './src/navigation/RootNavigator';
 
 export default function App() {
-  return <RootNavigator />;
+  return (
+    <CaixaProvider>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </CaixaProvider>
+  );
 }

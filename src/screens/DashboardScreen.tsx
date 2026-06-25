@@ -10,17 +10,11 @@ type Props = BottomTabScreenProps<RootTabParamList, 'Dashboard'>;
 export function DashboardScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Painel Principal</Text>
-      <Text style={styles.subtitulo}>Status em tempo real do seu sistema</Text>
+      <Text style={styles.titulo}>Caixa principal</Text>
+      <Text style={styles.subtitulo}>Estado da sua caixa d'gua</Text>
 
-      <CardMonitoramento litros="450 L" volume={100}/>
-
-      <Pressable
-        style={styles.botaoSecundario}
-        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-      >
-        <Text style={styles.botaoSecundarioTexto}>Abrir menu lateral</Text>
-      </Pressable>
+      <CardMonitoramento />
+      
     </View>
   );
 }

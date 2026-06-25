@@ -5,13 +5,12 @@ import { CardStatisticas } from '../componentes/CardStatisticas';
 export function EstatisticasScreen() {
   return (
     <View style={styles.container}>
+      <Text style={styles.titulo}>Estatísticas avançadas</Text>
+      <Text style={styles.subtitulo}>
+        Status em tempo real
+      </Text>
 
-      <View style={styles.containerGraficos}>
-      </View>
-
-      <View style={styles.containerIstatisticas}>
-        <CardStatisticas litros="450 Litros" volume="75% Volume" F_Lotar='35% Volume'/>
-        </View>
+      <CardStatisticas />
     </View>
   );
 }

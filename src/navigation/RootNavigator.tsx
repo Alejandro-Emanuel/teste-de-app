@@ -1,10 +1,15 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { AppDrawer } from './AppDrawer';
+
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { AppTabs } from './AppTabs';
+import { ConfiguracoesScreen } from '../screens/ConfiguracoesScreen';
+
+const Drawer = createDrawerNavigator();
 
 export function RootNavigator() {
   return (
-    <NavigationContainer>
-      <AppDrawer />
-    </NavigationContainer>
+    <Drawer.Navigator>
+      <Drawer.Screen name="Tabs" component={AppTabs} />
+      <Drawer.Screen name="Configuracoes" component={ConfiguracoesScreen} />
+    </Drawer.Navigator>
   );
 }
