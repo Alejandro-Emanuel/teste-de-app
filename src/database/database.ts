@@ -7,20 +7,37 @@ export async function getDb() {
     return database;
   }
 
-  database = await SQLite.openDatabaseAsync(
-    'aqua.db'
-  );
+  database = await SQLite.openDatabaseAsync('agua.db');
 
   await database.execAsync(`
     PRAGMA journal_mode = WAL;
 
+    CREATE TABLE IF NOT EXISTS agua (
+      id_agua INTEGER PRIMARY KEY AUTOINCREMENT,
+      litros_atuais INTEGER NOT NULL,
+      volume_percentual INTEGER NOT NULL,
+      para_completar_percentual INTEGER NOT NULL,
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE IF NOT EXISTS notificacoes (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id_notificacao INTEGER PRIMARY KEY AUTOINCREMENT,
       titulo TEXT NOT NULL,
       mensagem TEXT NOT NULL,
-      data TEXT NOT NULL,
-      tipo TEXT NOT NULL,
-      lida INTEGER NOT NULL DEFAULT 0
+      lida INTEGER DEFAULT 0,
+      criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS configuracoes (
+      id_config INTEGER PRIMARY KEY AUTOINCREMENT,
+      capacidade_maxima_litros INTEGER DEFAULT 1000,
+      limite_alerta_minimo INTEGER DEFAULT 20
+    );
+
+    CREATE TABLE IF NOT EXISTS consumo_diario (
+      id_consumo INTEGER PRIMARY KEY AUTOINCREMENT,
+      data_registro TEXT UNIQUE NOT NULL, -- Ex: '2026-06-28'
+      litros_consumidos INTEGER NOT NULL
     );
   `);
 
