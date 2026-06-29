@@ -36,9 +36,28 @@ export async function getDb() {
 
     CREATE TABLE IF NOT EXISTS consumo_diario (
       id_consumo INTEGER PRIMARY KEY AUTOINCREMENT,
-      data_registro TEXT UNIQUE NOT NULL, -- Ex: '2026-06-28'
+      data_registro TEXT UNIQUE NOT NULL,
       litros_consumidos INTEGER NOT NULL
     );
+  `);
+
+  await database.execAsync(`
+    CREATE TRIGGER IF NOT EXISTS gerar_alerta_nivel_baixo
+    AFTER INSERT ON agua
+    WHEN NEW.volume_percentual <= 20
+    BEGIN
+      INSERT INTO notificacoes (titulo, mensagem)
+      VALUES (
+        'Nível Crítico!', 
+        'Sua caixa d''água está com apenas ' || NEW.volume_percentual || '%. Verifique se há vazamentos ou interrupção no abastecimento.'
+      );
+    END;
+
+    CREATE TRIGGER IF NOT EXISTS auto_limpar_notificacoes_antigas
+    AFTER INSERT ON notificacoes
+    BEGIN
+      DELETE FROM notificacoes WHERE criado_em < DATETIME('now', '-30 days');
+    END;
   `);
 
   return database;
