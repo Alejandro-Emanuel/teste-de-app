@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { conectarMQTT, desconectarMQTT } from '../MQTT/MqttService';
+import { getDb } from '../database/database';
 
 interface CaixaData {
   litros: number;
@@ -9,19 +11,51 @@ interface CaixaData {
 interface CaixaContextType {
   dados: CaixaData;
   setDados: (dados: CaixaData) => void;
+  conectado: boolean;
 }
 
 const CaixaContext = createContext<CaixaContextType | null>(null);
 
+async function salvarNoBanco(dados: CaixaData) {
+  try {
+    const db = await getDb();
+    await db.runAsync(
+      `INSERT INTO agua (litros_atuais, volume_percentual, para_completar_percentual)
+       VALUES (?, ?, ?)`,
+      [dados.litros, dados.volume, dados.fLotar]
+    );
+  } catch (e) {
+    console.error('Erro ao salvar no SQLite:', e);
+  }
+}
+
 export function CaixaProvider({ children }: { children: React.ReactNode }) {
-  const [dados, setDados] = useState<CaixaData>({
-    litros: 450,
-    volume: 75,
-    fLotar: 25,
+  const [dados, setDadosState] = useState<CaixaData>({
+    litros: 0,
+    volume: 0,
+    fLotar: 100,
   });
+  const [conectado, setConectado] = useState(false);
+
+  useEffect(() => {
+    conectarMQTT((novosDados) => {
+      setConectado(true);
+      setDadosState(novosDados);
+      salvarNoBanco(novosDados); // persiste histórico e dispara trigger de alertas
+    });
+
+    return () => {
+      desconectarMQTT();
+      setConectado(false);
+    };
+  }, []);
+
+  const setDados = (dados: CaixaData) => {
+    setDadosState(dados);
+  };
 
   return (
-    <CaixaContext.Provider value={{ dados, setDados }}>
+    <CaixaContext.Provider value={{ dados, setDados, conectado }}>
       {children}
     </CaixaContext.Provider>
   );
