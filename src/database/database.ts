@@ -42,16 +42,9 @@ export async function getDb() {
   `);
 
   await database.execAsync(`
-    CREATE TRIGGER IF NOT EXISTS gerar_alerta_nivel_baixo
-    AFTER INSERT ON agua
-    WHEN NEW.volume_percentual <= 20
-    BEGIN
-      INSERT INTO notificacoes (titulo, mensagem)
-      VALUES (
-        'Nível Crítico!', 
-        'Sua caixa d''água está com apenas ' || NEW.volume_percentual || '%. Verifique se há vazamentos ou interrupção no abastecimento.'
-      );
-    END;
+    DROP TRIGGER IF NOT EXISTS gerar_alerta_nivel_baixo;
+
+    CREATE TABLE IF NOT EXISTS notificacoes (id_notificacao INTEGER); -- Linha segura caso queira recriar futuramente
 
     CREATE TRIGGER IF NOT EXISTS auto_limpar_notificacoes_antigas
     AFTER INSERT ON notificacoes
