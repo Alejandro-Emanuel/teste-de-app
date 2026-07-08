@@ -1,7 +1,7 @@
 import mqtt, { MqttClient } from 'mqtt';
 
-const BROKER_URL = 'ws://broker.hivemq.com:8000/mqtt'; // troque pelo IP da sua máquina/servidor
-const TOPICO = 'edu/caixa/dados';                // ajuste para o tópico que o ESP32 publica
+const BROKER_URL = 'ws://broker.hivemq.com:8000/mqtt'; 
+const TOPICO = 'edu/caixa/dados';
 
 let client: MqttClient | null = null;
 
@@ -12,7 +12,7 @@ export interface DadosMQTT {
 }
 
 export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
-  if (client) return; // já conectado
+  if (client) return;
 
   client = mqtt.connect(BROKER_URL, {
     clientId: `expo_caixa_${Math.random().toString(16).slice(2)}`,
@@ -33,7 +33,6 @@ export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
     try {
       const dados: DadosMQTT = JSON.parse(payload.toString());
 
-      // Validação mínima antes de repassar
       if (
         typeof dados.litros === 'number' &&
         typeof dados.volume === 'number' &&
