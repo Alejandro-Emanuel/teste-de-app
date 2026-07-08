@@ -9,7 +9,6 @@ export interface Notificacao {
 }
 
 export async function salvarNotificacao(titulo: string, mensagem: string): Promise<boolean> {
-
   if (!titulo.trim() || !mensagem.trim()) {
     console.warn('Aviso: Tentativa de salvar uma notificação com título ou mensagem vazia.');
     return false;
@@ -17,15 +16,33 @@ export async function salvarNotificacao(titulo: string, mensagem: string): Promi
 
   try {
     const db = await getDb();
-    
+    const tituloFormatado = titulo.trim();
+    const mensagemFormatada = mensagem.trim();
+
+    const ultimaNotificacao = await db.getFirstAsync<Notificacao>(
+      'SELECT * FROM notificacoes WHERE titulo = ? ORDER BY criado_em DESC LIMIT 1;',
+      [tituloFormatado]
+    );
+
+    if (ultimaNotificacao && ultimaNotificacao.id_notificacao) {
+
+      await db.runAsync(
+        `UPDATE notificacoes 
+         SET mensagem = ?, lida = 0, criado_em = CURRENT_TIMESTAMP 
+         WHERE id_notificacao = ?;`,
+        [mensagemFormatada, ultimaNotificacao.id_notificacao]
+      );
+      return true;
+    }
+
     await db.runAsync(
       'INSERT INTO notificacoes (titulo, mensagem, lida) VALUES (?, ?, 0);',
-      [titulo.trim(), mensagem.trim()]
+      [tituloFormatado, mensagemFormatada]
     );
     
     return true;
   } catch (error) {
-    console.error('Erro ao salvar notificação no SQLite:', error);
+    console.error('Erro ao salvar/atualizar notificação no SQLite:', error);
     return false;
   }
 }
