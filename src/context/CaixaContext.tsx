@@ -41,7 +41,7 @@ export function CaixaProvider({ children }: { children: React.ReactNode }) {
     conectarMQTT((novosDados) => {
       setConectado(true);
       setDadosState(novosDados);
-      salvarNoBanco(novosDados); // persiste histórico e dispara trigger de alertas
+      salvarNoBanco(novosDados);
     });
 
     return () => {

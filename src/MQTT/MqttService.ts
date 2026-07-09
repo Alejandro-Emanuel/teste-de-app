@@ -17,7 +17,7 @@ export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
   client = mqtt.connect(BROKER_URL, {
     clientId: `expo_caixa_${Math.random().toString(16).slice(2)}`,
     clean: true,
-    reconnectPeriod: 3000,
+    reconnectPeriod: 3000,  
     connectTimeout: 10000,
   });
 
@@ -25,7 +25,7 @@ export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
     console.log('Conectado ao Mosquitto');
     client?.subscribe(TOPICO, (err) => {
       if (err) console.error('Erro ao subscrever:', err);
-      else console.log(`📡 Subscrito em: ${TOPICO}`);
+      else console.log(`Subscrito em: ${TOPICO}`);
     });
   });
 
@@ -48,7 +48,7 @@ export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
   });
 
   client.on('error', (err) => {
-    console.error('rro MQTT:', err.message);
+    console.error('Erro MQTT:', err.message);
   });
 
   client.on('reconnect', () => {
