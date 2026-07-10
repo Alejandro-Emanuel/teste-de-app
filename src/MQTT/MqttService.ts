@@ -1,6 +1,6 @@
 import mqtt, { MqttClient } from 'mqtt';
 
-const BROKER_URL = 'ws://broker.hivemq.com:8000/mqtt'; 
+const BROKER_URL = 'wss://broker.hivemq.com:8884/mqtt'; 
 const TOPICO = 'edu/caixa/dados';
 
 let client: MqttClient | null = null;
