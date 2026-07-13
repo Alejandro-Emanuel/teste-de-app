@@ -8,7 +8,7 @@ const Drawer = createDrawerNavigator();
 export function RootNavigator() {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Tabs" component={AppTabs} />
+      <Drawer.Screen name="Inicio" component={AppTabs} />
       <Drawer.Screen name="Configuracoes" component={ConfiguracoesScreen} />
     </Drawer.Navigator>
   );
