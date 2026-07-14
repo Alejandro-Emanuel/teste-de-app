@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Text, TextInput, View, Pressable, Alert } from 'react-native';
+import { Text, TextInput, View, Pressable, Alert, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { buscarConfiguracao, atualizarConfiguracao } from '../database/configuracaoService';
+import { publicarCapacidade } from '../MQTT/MqttService';
 import { styles } from '../styles';
 
 export function ConfiguracoesScreen() {
@@ -36,6 +37,8 @@ export function ConfiguracoesScreen() {
     }
 
     const sucesso = await atualizarConfiguracao(capacidadeNum, limiteNum);
+    if (sucesso) publicarCapacidade(capacidadeNum);
+
     Alert.alert(sucesso ? 'Salvo!' : 'Erro', sucesso
       ? 'Configurações atualizadas com sucesso.'
       : 'Não foi possível salvar as configurações.');
@@ -50,53 +53,46 @@ export function ConfiguracoesScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: '#0B1D3A' }}
+      contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
+    >
       <Text style={styles.titulo}>Configurações</Text>
+      <Text style={styles.subtitulo}>Ajuste os parâmetros da caixa d'água</Text>
 
-      <Text style={{ marginTop: 20, marginBottom: 5, fontWeight: 'bold', color: '#333' }}>
-        Capacidade máxima da caixa (litros)
-      </Text>
-      <TextInput
-        value={capacidade}
-        onChangeText={setCapacidade}
-        keyboardType="numeric"
-        style={{
-          borderWidth: 1,
-          borderColor: '#ccc',
-          borderRadius: 8,
-          padding: 10,
-          fontSize: 16,
-        }}
-      />
+      <View style={styles.configCard}>
+        <View style={styles.campoGrupo}>
+          <Text style={styles.campoLabel}>Capacidade máxima da caixa (litros)</Text>
+          <TextInput
+            value={capacidade}
+            onChangeText={setCapacidade}
+            keyboardType="numeric"
+            placeholder="Ex: 1000"
+            placeholderTextColor="rgba(255,255,255,0.3)"
+            style={styles.campoInput}
+          />
+          <Text style={styles.campoAjuda}>Enviado automaticamente para o dispositivo ao salvar.</Text>
+        </View>
 
-      <Text style={{ marginTop: 20, marginBottom: 5, fontWeight: 'bold', color: '#333' }}>
-        Alertar quando o nível estiver abaixo de (%)
-      </Text>
-      <TextInput
-        value={limiteAlerta}
-        onChangeText={setLimiteAlerta}
-        keyboardType="numeric"
-        style={{
-          borderWidth: 1,
-          borderColor: '#ccc',
-          borderRadius: 8,
-          padding: 10,
-          fontSize: 16,
-        }}
-      />
+        <View style={styles.campoGrupo}>
+          <Text style={styles.campoLabel}>Alertar quando o nível estiver abaixo de (%)</Text>
+          <TextInput
+            value={limiteAlerta}
+            onChangeText={setLimiteAlerta}
+            keyboardType="numeric"
+            placeholder="Ex: 20"
+            placeholderTextColor="rgba(255,255,255,0.3)"
+            style={styles.campoInput}
+          />
+        </View>
 
-      <Pressable
-        onPress={handleSalvar}
-        style={{
-          backgroundColor: '#007bff',
-          padding: 14,
-          borderRadius: 8,
-          marginTop: 25,
-          alignItems: 'center',
-        }}
-      >
-        <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 16 }}>Salvar</Text>
-      </Pressable>
-    </View>
+        <Pressable
+          onPress={handleSalvar}
+          style={({ pressed }) => [styles.botaoPrimario, pressed && styles.botaoPrimarioPressionado]}
+        >
+          <Text style={styles.botaoPrimarioTexto}>Salvar</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
   );
 }

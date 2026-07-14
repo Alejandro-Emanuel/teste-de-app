@@ -135,4 +135,48 @@ export const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#fff",
   },
+  configCard: {
+    backgroundColor: "#123368",
+    borderRadius: 16,
+    padding: 20,
+    gap: 20,
+  },
+  campoGrupo: {
+    gap: 8,
+  },
+  campoLabel: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "rgba(255,255,255,0.65)",
+  },
+  campoAjuda: {
+    fontSize: 11,
+    color: "rgba(255,255,255,0.4)",
+    marginTop: -4,
+  },
+  campoInput: {
+    backgroundColor: "#0B1D3A",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    fontSize: 16,
+    color: "#fff",
+  },
+  botaoPrimario: {
+    backgroundColor: "#00ABE4",
+    borderRadius: 10,
+    paddingVertical: 14,
+    alignItems: "center",
+    marginTop: 4,
+  },
+  botaoPrimarioPressionado: {
+    opacity: 0.8,
+  },
+  botaoPrimarioTexto: {
+    color: "#0B1D3A",
+    fontWeight: "700",
+    fontSize: 16,
+  },
 });

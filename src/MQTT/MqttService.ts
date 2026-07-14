@@ -1,7 +1,8 @@
 import mqtt, { MqttClient } from 'mqtt';
 
 const BROKER_URL = 'wss://broker.hivemq.com:8884/mqtt'; 
-const TOPICO = 'edu/caixa/dados';
+const TOPICO_DADOS = 'edu/caixa/dados';
+const TOPICO_CONFIG_LITROS = 'edu/caixa/config_litros';
 
 let client: MqttClient | null = null;
 
@@ -23,15 +24,28 @@ export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
 
   client.on('connect', () => {
     console.log('Conectado ao Mosquitto');
-    client?.subscribe(TOPICO, (err) => {
+    client?.subscribe(TOPICO_DADOS, (err) => {
       if (err) console.error('Erro ao subscrever:', err);
-      else console.log(`Subscrito em: ${TOPICO}`);
+      else console.log(`Subscrito em: ${TOPICO_DADOS}`);
     });
   });
 
   client.on('message', (_topico, payload) => {
     try {
-      const dados: DadosMQTT = JSON.parse(payload.toString());
+      const bruto: Record<string, unknown> = JSON.parse(payload.toString());
+
+      // Normaliza as chaves para minúsculo, pois o firmware pode mandar
+      // "Litros"/"Volume"/"fLotar" ou "litros"/"volume"/"flotar".
+      const normalizado: Record<string, unknown> = {};
+      for (const chave in bruto) {
+        normalizado[chave.toLowerCase()] = bruto[chave];
+      }
+
+      const dados: DadosMQTT = {
+        litros: normalizado['litros'] as number,
+        volume: normalizado['volume'] as number,
+        fLotar: normalizado['flotar'] as number,
+      };
 
       if (
         typeof dados.litros === 'number' &&
@@ -40,7 +54,7 @@ export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
       ) {
         onDados(dados);
       } else {
-        console.warn('Payload MQTT inválido:', dados);
+        console.warn('Payload MQTT inválido:', bruto);
       }
     } catch (e) {
       console.error('Erro ao parsear payload MQTT:', e);
@@ -63,4 +77,12 @@ export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
 export function desconectarMQTT() {
   client?.end(true);
   client = null;
+}
+
+/**
+ * Envia a nova capacidade (em litros) para o Wokwi/ESP32, que assina
+ * o tópico `edu/caixa/config_litros` e atualiza LITROS_DIGITADOS.
+ */
+export function publicarCapacidade(litros: number) {
+  client?.publish(TOPICO_CONFIG_LITROS, String(litros));
 }
