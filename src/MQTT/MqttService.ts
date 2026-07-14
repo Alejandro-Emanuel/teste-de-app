@@ -3,6 +3,7 @@ import mqtt, { MqttClient } from 'mqtt';
 const BROKER_URL = 'wss://broker.hivemq.com:8884/mqtt'; 
 const TOPICO_DADOS = 'edu/caixa/dados';
 const TOPICO_CONFIG_LITROS = 'edu/caixa/config_litros';
+const TOPICO_CONFIG_FORMATO = 'edu/caixa/config_formato';
 
 let client: MqttClient | null = null;
 
@@ -85,4 +86,12 @@ export function desconectarMQTT() {
  */
 export function publicarCapacidade(litros: number) {
   client?.publish(TOPICO_CONFIG_LITROS, String(litros));
+}
+
+/**
+ * Envia o formato da caixa ('quadrada' | 'redonda') para o Wokwi/ESP32,
+ * que assina o tópico `edu/caixa/config_formato`.
+ */
+export function publicarFormato(formato: 'quadrada' | 'redonda') {
+  client?.publish(TOPICO_CONFIG_FORMATO, formato);
 }
