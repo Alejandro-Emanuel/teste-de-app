@@ -4,7 +4,6 @@ import { salvarNotificacao } from '../database/notificacaoService';
 
 const CANAL_ALERTAS = 'alertas-caixa-agua';
 
-// Define como a notificação deve se comportar quando o app está aberto (foreground).
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowBanner: true,
@@ -16,10 +15,6 @@ Notifications.setNotificationHandler({
 
 let configurado = false;
 
-/**
- * Solicita permissão do usuário e cria o canal de notificação no Android.
- * Deve ser chamado uma vez, no início do app (ex: dentro do CaixaProvider).
- */
 export async function configurarNotificacoes(): Promise<void> {
   if (configurado) return;
   configurado = true;
@@ -50,10 +45,6 @@ export async function configurarNotificacoes(): Promise<void> {
   }
 }
 
-/**
- * Dispara um alerta: salva no histórico (SQLite, aba de Notificações)
- * e mostra uma notificação local na bandeja do dispositivo.
- */
 export async function dispararAlerta(titulo: string, mensagem: string): Promise<void> {
   await salvarNotificacao(titulo, mensagem);
 
@@ -64,8 +55,6 @@ export async function dispararAlerta(titulo: string, mensagem: string): Promise<
         body: mensagem,
         sound: true,
       },
-      // No Android, um trigger com apenas channelId dispara imediatamente já associado ao canal certo.
-      // No iOS/web, channelId não existe, então usamos null (imediato).
       trigger: Platform.OS === 'android' ? { channelId: CANAL_ALERTAS } : null,
     });
   } catch (error) {

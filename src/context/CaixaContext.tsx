@@ -4,7 +4,6 @@ import { getDb } from '../database/database';
 import { buscarConfiguracao, limiteAlertaEmMemoria } from '../database/configuracaoService';
 import { configurarNotificacoes, dispararAlerta } from '../notifications/NotificationService';
 
-// Tempo sem receber dados do MQTT para considerarmos a conexão "caída".
 const TIMEOUT_DESCONEXAO_MS = 30_000;
 
 interface CaixaData {
@@ -42,8 +41,6 @@ export function CaixaProvider({ children }: { children: React.ReactNode }) {
   });
   const [conectado, setConectado] = useState(false);
 
-  // Guardam se o alerta já está "ativo" para não notificar a cada mensagem MQTT,
-  // só na transição (borda) de normal -> alerta.
   const nivelBaixoAtivoRef = useRef(false);
   const cheioAtivoRef = useRef(false);
   const desconectadoAtivoRef = useRef(false);
@@ -65,7 +62,6 @@ export function CaixaProvider({ children }: { children: React.ReactNode }) {
   }
 
   function verificarAlertas(novosDados: CaixaData) {
-    // Nível baixo (borda de entrada e de saída)
     if (novosDados.volume <= limiteAlertaEmMemoria) {
       if (!nivelBaixoAtivoRef.current) {
         nivelBaixoAtivoRef.current = true;
@@ -78,7 +74,6 @@ export function CaixaProvider({ children }: { children: React.ReactNode }) {
       nivelBaixoAtivoRef.current = false;
     }
 
-    // Caixa cheia (borda de entrada e de saída)
     if (novosDados.volume >= 100) {
       if (!cheioAtivoRef.current) {
         cheioAtivoRef.current = true;

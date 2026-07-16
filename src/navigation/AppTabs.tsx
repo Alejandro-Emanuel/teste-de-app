@@ -47,7 +47,7 @@ export function AppTabs() {
           color="#00ABE4"
         />
 
-        {/* Bolinha vermelha */}
+        {}
         <View
           style={{
             position: 'absolute',

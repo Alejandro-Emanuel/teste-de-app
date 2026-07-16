@@ -34,8 +34,6 @@ export function conectarMQTT(onDados: (dados: DadosMQTT) => void) {
     try {
       const bruto: Record<string, unknown> = JSON.parse(payload.toString());
 
-      // Normaliza as chaves para minúsculo, pois o firmware pode mandar
-      // "Litros"/"Volume"/"fLotar" ou "litros"/"volume"/"flotar".
       const normalizado: Record<string, unknown> = {};
       for (const chave in bruto) {
         normalizado[chave.toLowerCase()] = bruto[chave];
@@ -79,10 +77,6 @@ export function desconectarMQTT() {
   client = null;
 }
 
-/**
- * Envia a nova capacidade (em litros) para o Wokwi/ESP32, que assina
- * o tópico `edu/caixa/config_litros` e atualiza LITROS_DIGITADOS.
- */
 export function publicarCapacidade(litros: number) {
   client?.publish(TOPICO_CONFIG_LITROS, String(litros));
 }

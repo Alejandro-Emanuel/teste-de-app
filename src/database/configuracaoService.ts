@@ -6,17 +6,8 @@ export interface Configuracao {
   limite_alerta_minimo: number;
 }
 
-/**
- * Cópia em memória do limite de alerta, sempre atualizada por buscarConfiguracao()
- * e atualizarConfiguracao(). Quem precisa do valor "ao vivo" (ex: CaixaContext)
- * pode importar e ler essa variável diretamente, sem precisar reabrir o app.
- */
 export let limiteAlertaEmMemoria = 20;
 
-/**
- * Garante que exista uma linha de configuração e a retorna.
- * A tabela `configuracoes` foi desenhada para ter no máximo 1 registro (singleton).
- */
 export async function buscarConfiguracao(): Promise<Configuracao> {
   const db = await getDb();
 
