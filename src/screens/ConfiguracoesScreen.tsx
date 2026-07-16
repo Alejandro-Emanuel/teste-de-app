@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { Text, TextInput, View, Pressable, Alert, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { buscarConfiguracao, atualizarConfiguracao } from '../database/configuracaoService';
-import { publicarCapacidade } from '../MQTT/MqttService';
+import { publicarCapacidade, publicarFormato } from '../MQTT/MqttService';
 import { styles } from '../styles';
+
+type FormatoCaixa = 'quadrada' | 'redonda';
 
 export function ConfiguracoesScreen() {
   const [capacidade, setCapacidade] = useState('1000');
   const [limiteAlerta, setLimiteAlerta] = useState('20');
+  const [formato, setFormato] = useState<FormatoCaixa>('quadrada');
   const [carregando, setCarregando] = useState(true);
   const isFocused = useIsFocused();
 
@@ -37,7 +40,10 @@ export function ConfiguracoesScreen() {
     }
 
     const sucesso = await atualizarConfiguracao(capacidadeNum, limiteNum);
-    if (sucesso) publicarCapacidade(capacidadeNum);
+    if (sucesso) {
+      publicarCapacidade(capacidadeNum);
+      publicarFormato(formato);
+    }
 
     Alert.alert(sucesso ? 'Salvo!' : 'Erro', sucesso
       ? 'Configurações atualizadas com sucesso.'
@@ -72,6 +78,28 @@ export function ConfiguracoesScreen() {
             style={styles.campoInput}
           />
           <Text style={styles.campoAjuda}>Enviado automaticamente para o dispositivo ao salvar.</Text>
+        </View>
+
+        <View style={styles.campoGrupo}>
+          <Text style={styles.campoLabel}>Formato da caixa</Text>
+          <View style={styles.seletorFormato}>
+            <Pressable
+              onPress={() => setFormato('quadrada')}
+              style={[styles.opcaoFormato, formato === 'quadrada' && styles.opcaoFormatoSelecionada]}
+            >
+              <Text style={[styles.opcaoFormatoTexto, formato === 'quadrada' && styles.opcaoFormatoTextoSelecionado]}>
+                Quadrada
+              </Text>
+            </Pressable>
+            <Pressable
+              onPress={() => setFormato('redonda')}
+              style={[styles.opcaoFormato, formato === 'redonda' && styles.opcaoFormatoSelecionada]}
+            >
+              <Text style={[styles.opcaoFormatoTexto, formato === 'redonda' && styles.opcaoFormatoTextoSelecionado]}>
+                Redonda
+              </Text>
+            </Pressable>
+          </View>
         </View>
 
         <View style={styles.campoGrupo}>

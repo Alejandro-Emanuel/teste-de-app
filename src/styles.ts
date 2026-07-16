@@ -179,4 +179,28 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 16,
   },
+  seletorFormato: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  opcaoFormato: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.15)",
+    backgroundColor: "#0B1D3A",
+    alignItems: "center",
+  },
+  opcaoFormatoSelecionada: {
+    borderColor: "#00ABE4",
+    backgroundColor: "rgba(0,171,228,0.15)",
+  },
+  opcaoFormatoTexto: {
+    color: "rgba(255,255,255,0.6)",
+    fontWeight: "600",
+  },
+  opcaoFormatoTextoSelecionado: {
+    color: "#00ABE4",
+  },
 });
